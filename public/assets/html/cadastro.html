@@ -50,25 +50,53 @@
   <!-- Scripts -->
   <script src="assets/scripts/app.js"></script>
   <script>
-    const form = document.getElementById("form-cadastro");
+  const form = document.getElementById("form-cadastro");
 
-    form.addEventListener("submit", function (e) {
-      const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const senha = document.getElementById("senha").value;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      if (!nome || !email || !senha) {
-        alert("Por favor, preencha todos os campos.");
-        e.preventDefault();
-      } else if (senha.length < 6) {
-        alert("A senha deve ter pelo menos 6 caracteres.");
-        e.preventDefault();
-      } else {
-        alert("Cadastro realizado com sucesso!");
-        form.reset();
-        e.preventDefault(); // Remova esta linha se quiser enviar para um backend
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value;
+
+    if (!nome || !email || !senha) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    if (senha.length < 6) {
+      alert("A senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+
+    // Enviar para o JSON Server
+    fetch("http://localhost:3001/usuarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome: nome,
+        email: email,
+        senha: senha
+      })
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Erro ao cadastrar");
       }
+      return res.json();
+    })
+    .then(data => {
+      alert("Cadastro realizado com sucesso!");
+      form.reset();
+      console.log("Usuário salvo:", data);
+    })
+    .catch(err => {
+      console.error("Erro:", err);
+      alert("Erro ao cadastrar usuário.");
     });
-  </script>
+  });
+</script>
 </body>
 </html>

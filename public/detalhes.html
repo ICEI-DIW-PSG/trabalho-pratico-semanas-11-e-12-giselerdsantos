@@ -55,24 +55,34 @@
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
-    let item;
-
-    if (id && id.startsWith("b")) {
-      item = banners.find(b => b.id === id);
-    } else {
-      item = dados.find(d => d.id === parseInt(id));
+    if (!id) {
+      document.body.innerHTML = "<h2>ID não encontrado na URL.</h2><a href='index.html' class='btn'>Voltar</a>";
+      return;
     }
 
-    if (item) {
-      document.getElementById("titulo").textContent = item.titulo;
-      document.getElementById("autor").textContent = item.autor;
-      document.getElementById("data").textContent = item.data;
-      document.getElementById("imagem").src = item.imagem;
-      document.getElementById("imagem").alt = item.titulo;
-      document.getElementById("conteudo").innerHTML = item.conteudo;
-    } else {
-      document.body.innerHTML = "<h2>Conteúdo não encontrado.</h2><a href='index.html' class='btn'>Voltar</a>";
-    }
+    const url = id.startsWith("b")
+      ? `http://localhost:3001/banners/${id}`
+      : `http://localhost:3001/artigos/${parseInt(id)}`; 
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Conteúdo não encontrado");
+        }
+        return res.json();
+      })
+      .then(item => {
+        document.getElementById("titulo").textContent = item.titulo;
+        document.getElementById("autor").textContent = item.autor;
+        document.getElementById("data").textContent = item.data;
+        document.getElementById("imagem").src = item.imagem;
+        document.getElementById("imagem").alt = item.titulo;
+        document.getElementById("conteudo").innerHTML = item.conteudo;
+      })
+      .catch(err => {
+        document.body.innerHTML = "<h2>Conteúdo não encontrado.</h2><a href='index.html' class='btn'>Voltar</a>";
+        console.error(err);
+      });
   });
 </script>
 
