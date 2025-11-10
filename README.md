@@ -6,24 +6,28 @@ Para esse projeto, além de mudarmos o JSON para o JSON Server, vamos permitir o
 
 ## Informações do trabalho
 
-- Nome:
-- Matricula:
-- Proposta de projeto escolhida:
-- Breve descrição sobre seu projeto:
+- Nome: GISELE RODRIGUES DOS SANTOS
+- Matricula: 903350
+- Proposta de projeto escolhida: Organizações e Equipes, pois o The Advocate é um jornal fictício, ideia que retirei de um livro, que funciona como uma organização.
+- Breve descrição sobre seu projeto: É um site fictício do jornal The Advocate, inspirado no livro de Hades e Persefone. O jornal atua como uma organização em Nova Atenas, publicando matérias investigativas, críticas e análises sobre os acontecimentos da cidade, revelando conspirações, disputas de poder entre os deuses e a influência deles sobre os mortais, conectando o leitor ao universo da obra de forma imersiva e narrativa.
 
 **Print dos testes da API com Postman ou similar**
 
-<< COLOQUE A IMAGEM GET AQUI >>
+<<  IMAGEM GET >>
+![GET](public/assests/images/get.png)
 
-<< COLOQUE A IMAGEM POST AQUI >>
+<<  IMAGEM POST >>
+![POST](public/assests/images/post.png)
 
-<< COLOQUE A IMAGEM PUT AQUI >>
+<<  IMAGEM PUT >>
+![PUT](public/assests/images/put.png)
 
-<< COLOQUE A IMAGEM DELETE AQUI >>
+<< IMAGEM DELETE >>
+![DELETE](public/assests/images/delete.png)
 
 **Print da aba NETWORK com requisições Fetch/XHR POST e GET**
 
-<<  COLOQUE A IMAGEM AQUI >>
+![ABA NETWORK](public/assests/images/network.png)
 
 ## **Orientações Gerais**
 
